@@ -1,8 +1,28 @@
-<h1>Modifier le produit</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier le produit</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
 
-<form method="POST">
-  <input type="text" name="name" value="<%= product.name %>" required>
-  <button type="submit">Modifier</button>
-</form>
+<nav>
+  <a href="/">Accueil</a>
+  <a href="/products">Produits</a>
+  <a href="/products/logout">Déconnexion</a>
+</nav>
 
-<a href="/products">⬅ Retour</a>
+<div class="container">
+  <h1>Modifier le produit</h1>
+
+  <form method="POST">
+    <input type="text" name="name" value="<%= product.name %>" required>
+    <button type="submit">Modifier</button>
+  </form>
+
+  <a href="/products">⬅ Retour</a>
+</div>
+
+</body>
+</html>

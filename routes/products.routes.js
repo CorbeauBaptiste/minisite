@@ -70,4 +70,13 @@ router.get('/delete/:id', auth, (req, res) => {
   );
 });
 
+/**
+ * LOGOUT
+ */
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+
+
 module.exports = router;
