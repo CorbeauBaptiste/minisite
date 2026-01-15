@@ -40,7 +40,7 @@ router.post('/add', auth, (req, res) => {
  */
 router.get('/edit/:id', auth, (req, res) => {
   db.query(
-    'SELECT * FROM products WHERE id = ?',
+    'SELECT * FROM product WHERE id = ?',
     [req.params.id],
     (err, results) => {
       res.render('product_edit', { product: results[0] });
