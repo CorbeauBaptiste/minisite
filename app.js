@@ -1,11 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+
 const db = require('./db');
+const productRoutes = require('./routes/products.routes');
 
 const app = express();
 
+// ===== CONFIG =====
 app.set('view engine', 'ejs');
+
+// ===== MIDDLEWARES (AVANT LES ROUTES) =====
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
@@ -15,17 +20,15 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// Page d'accueil
+// ===== ROUTES =====
 app.get('/', (req, res) => {
   res.render('home');
 });
 
-// Page login
 app.get('/login', (req, res) => {
   res.render('login');
 });
 
-// Traitement login
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
@@ -43,14 +46,8 @@ app.post('/login', (req, res) => {
   );
 });
 
-// Liste des produits
-app.get('/products', (req, res) => {
-  if (!req.session.user) return res.redirect('/login');
-
-  db.query('SELECT * FROM products', (err, results) => {
-    res.render('products', { products: results });
-  });
-});
+// 👇 TOUJOURS APRÈS session
+app.use('/products', productRoutes);
 
 app.listen(3000, () => {
   console.log('Serveur lancé sur http://localhost:3000');

@@ -1,0 +1,15 @@
+<h1>Produits</h1>
+
+<a href="/products/add">➕ Ajouter un produit</a>
+
+<ul>
+  <% products.forEach(p => { %>
+    <li>
+      <%= p.name %>
+      <a href="/products/edit/<%= p.id %>">✏️</a>
+      <a href="/products/delete/<%= p.id %>" onclick="return confirm('Supprimer ?')">❌</a>
+    </li>
+  <% }) %>
+</ul>
+
+<a href="/">⬅ Retour</a>
