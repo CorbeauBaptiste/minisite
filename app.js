@@ -10,7 +10,7 @@ const app = express();
 // ===== CONFIG =====
 app.set('view engine', 'ejs');
 
-// ===== MIDDLEWARES (AVANT LES ROUTES) =====
+// ===== MIDDLEWARES =====
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
@@ -46,7 +46,7 @@ app.post('/login', (req, res) => {
   );
 });
 
-// 👇 TOUJOURS APRÈS session
+// 
 app.use('/products', productRoutes);
 
 app.listen(3000, () => {

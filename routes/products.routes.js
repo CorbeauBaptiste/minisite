@@ -9,7 +9,7 @@ function auth(req, res, next) {
 }
 
 /**
- * READ - Liste des produits
+ * LIST - Liste des produits
  */
 router.get('/', auth, (req, res) => {
   db.query('SELECT * FROM products', (err, results) => {
